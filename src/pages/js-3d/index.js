@@ -1,11 +1,13 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { message } from 'antd';
-// import * as THREE from 'three';
 import * as THREE from 'three';
 import TWEEN from '@tweenjs/tween.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
+
 import Script from 'react-load-script';
 import { useHistory } from 'react-router-dom';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+
 import '_less/js-3d/index.less';
 
 const Js3d = () => {
@@ -33,6 +35,7 @@ const Js3d = () => {
                 THREE,
                 TWEEN,
                 OrbitControls,
+                OBJLoader,
             });
         }
     };
