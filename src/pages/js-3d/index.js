@@ -40,7 +40,7 @@ const Js3d = () => {
     const init = () => {
         // 模拟ajax
         const timer = setTimeout(() => {
-            setUrl('/cdn/model/js-3d/index.js?v=' + Date.parse(new Date()));
+            setUrl('/cdn/model/js-3d/index.min.js?v=' + Date.parse(new Date()));
             clearTimeout(timer);
         }, 300);
     };
