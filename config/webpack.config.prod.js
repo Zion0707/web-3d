@@ -50,10 +50,10 @@ const prodConfig = {
         // css 文件压缩
         new OptimizeCssAssetsWebpackPlugin(),
 
-        // 查看打包文件大小
+        // // 查看打包文件大小
         // new BundleAnalyzerPlugin({
         //     //  端口查看
-        //     analyzerPort: 3001,
+        //     analyzerPort: 7000,
         // }),
     ],
 

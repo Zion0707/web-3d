@@ -1,4 +1,6 @@
 import React, { useEffect, useState, Fragment } from 'react';
+import { message } from 'antd';
+// import * as THREE from 'three';
 import * as THREE from 'three';
 import TWEEN from '@tweenjs/tween.js';
 import Script from 'react-load-script';
@@ -11,6 +13,12 @@ const Js3d = () => {
     const [url, setUrl] = useState('');
     const history = useHistory();
 
+    // 外部cdn调用函数
+    window.ddddd = (name) => {
+        // console.log(name);
+        message.warning(`点击了${name}`);
+    };
+
     const scriptOnCreate = () => {
         console.log('onCreate');
     };
@@ -20,13 +28,21 @@ const Js3d = () => {
     const scriptOnLoad = () => {
         console.log('onLoad');
         // js 加载完毕的时候执行初始化
-        if (js3dModel) {
-            js3dModel.init({
+        if (window.js3dModel) {
+            window.js3dModel.init({
                 THREE,
                 TWEEN,
                 OrbitControls,
             });
         }
+    };
+
+    const init = () => {
+        // 模拟ajax
+        const timer = setTimeout(() => {
+            setUrl('/cdn/model/js-3d/index.js?v=' + Date.parse(new Date()));
+            clearTimeout(timer);
+        }, 300);
     };
 
     // 组件卸载处理
@@ -35,12 +51,7 @@ const Js3d = () => {
     };
 
     useEffect(() => {
-        // 模拟ajax
-        const timer = setTimeout(() => {
-            setUrl('/cdn/model/js-3d/index.js?v=' + Date.parse(new Date()));
-            clearTimeout(timer);
-        }, 300);
-
+        init();
         return unComponent;
     }, []);
 
