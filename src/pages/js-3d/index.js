@@ -24,7 +24,7 @@ const Js3d = () => {
         const timer = setTimeout(() => {
             loadScript('/cdn/model/item1/src/index.min.js?v=' + Date.parse(new Date()), { id: 'model_3d_js' });
             clearTimeout(timer);
-        }, 300);
+        });
     };
 
     // 组件卸载
