@@ -1,13 +1,11 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { message } from 'antd';
-import Script from 'react-load-script';
+// import Script from 'react-load-script';
 import { useHistory } from 'react-router-dom';
-
+import { loadScript } from '_utils';
 import '_less/js-3d/index.less';
 
 const Js3d = () => {
-    // 随机时间戳
-    const [url, setUrl] = useState('');
     const history = useHistory();
 
     // 外部cdn调用函数（加载）
@@ -21,27 +19,17 @@ const Js3d = () => {
         message.warning(`点击了${name}`);
     };
 
-    const scriptOnCreate = () => {
-        console.log('onCreate');
-    };
-    const scriptOnError = () => {
-        console.log('onError');
-    };
-    const scriptOnLoad = () => {
-        console.log('onLoad');
-    };
-
     const init = () => {
         // 模拟ajax
         const timer = setTimeout(() => {
-            setUrl('/cdn/model/item1/src/index.min.js?v=' + Date.parse(new Date()));
+            loadScript('/cdn/model/item1/src/index.min.js?v=' + Date.parse(new Date()), { id: 'model_3d_js' });
             clearTimeout(timer);
         }, 300);
     };
 
-    // 组件卸载处理
+    // 组件卸载
     const unComponent = () => {
-        document.body.removeChild(document.getElementById('js_load_3d'));
+        document.body.removeChild(document.getElementById('model_3d_js'));
     };
 
     useEffect(() => {
@@ -58,15 +46,6 @@ const Js3d = () => {
             >
                 Back Home Page
             </button>
-            {url && (
-                <Script
-                    url={url}
-                    attributes={{ id: 'js_load_3d' }}
-                    onCreate={scriptOnCreate}
-                    onError={scriptOnError}
-                    onLoad={scriptOnLoad}
-                />
-            )}
             <div id="content"></div>
         </Fragment>
     );

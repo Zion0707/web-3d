@@ -57,6 +57,7 @@ module.exports = {
         extensions: ['.js', '.jsx', '.css', '.less'],
         // 使用别名，简化引用路径
         alias: {
+            _utils: resolve(__dirname, '../src/utils'),
             _const: resolve(__dirname, '../src/const'),
             _less: resolve(__dirname, '../src/less'),
             _statics: resolve(__dirname, '../src/statics'),
